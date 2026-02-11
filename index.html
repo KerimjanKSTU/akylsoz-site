@@ -1,433 +1,643 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="АкылСөз — AI-платформа академического контента на кыргызском языке: STEM, AI и IT. Уровневое погружение KG+RU (A1–C1). GovTech-пилоты и масштабирование на другие языки." />
-  <meta name="theme-color" content="#0b1220" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>АкылСөз — AI Academic Media</title>
+<meta name="description" content="АкылСөз — GovTech AI-платформа академического контента на кыргызском языке: STEM, AI и IT. Уровневое погружение KG+RU (A1–C1).">
 
-  <title>АкылСөз — AI-академический контент на кыргызском языке</title>
+<style>
+:root{
+  --bg:#060a13;
+  --bg2:#0b1220;
+  --card:rgba(255,255,255,.05);
+  --card2:rgba(255,255,255,.035);
+  --line:rgba(148,163,184,.18);
+  --text:#eaf0ff;
+  --muted:rgba(234,240,255,.72);
+  --muted2:rgba(234,240,255,.55);
+  --accent:#7c5cff;
+  --accent2:#22c55e;
+  --warn:#f59e0b;
+  --shadow:0 14px 44px rgba(0,0,0,.55);
+  --shadow2:0 10px 26px rgba(0,0,0,.35);
+  --radius:18px;
+  --radius2:14px;
+  --max:1120px;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Liberation Sans",sans-serif;
+}
 
-  <style>
-    :root{
-      --bg:#0b1220;
-      --bg2:#0e1a33;
-      --card:#0f1b32cc;
-      --text:#e8eefc;
-      --muted:#b9c4e6;
-      --line:#22345f;
-      --accent:#7c5cff;
-      --accent2:#22c55e;
-      --warn:#f59e0b;
-      --shadow: 0 12px 40px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 1080px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--sans);
-      color:var(--text);
-      background:
-        radial-gradient(1200px 800px at 15% 10%, #1a2c5f 0%, transparent 55%),
-        radial-gradient(900px 700px at 85% 20%, #2a1e6b 0%, transparent 55%),
-        radial-gradient(900px 700px at 60% 90%, #0b3a4d 0%, transparent 55%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
-      line-height:1.55;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:22px}
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:14px 16px;
-      border:1px solid rgba(34,52,95,.7);
-      background:linear-gradient(180deg, rgba(15,27,50,.75) 0%, rgba(15,27,50,.45) 100%);
-      border-radius:999px; box-shadow: var(--shadow);
-      position:sticky; top:14px; backdrop-filter: blur(10px); z-index:20;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px; text-decoration:none;
-      font-weight:800; letter-spacing:.3px;
-    }
-    .logo{
-      width:36px;height:36px; border-radius:12px;
-      background: radial-gradient(circle at 30% 30%, #9f8bff 0%, #7c5cff 35%, #2a1e6b 100%);
-      box-shadow: 0 10px 25px rgba(124,92,255,.25);
-      position:relative;
-    }
-    .logo:after{
-      content:""; position:absolute; inset:10px;
-      border-radius:10px; border:2px solid rgba(232,238,252,.55);
-      transform: rotate(12deg);
-    }
-    .navlinks{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
-    .navlinks a{
-      text-decoration:none; font-weight:600; color:var(--muted);
-      padding:8px 10px; border-radius:10px;
-    }
-    .navlinks a:hover{background:rgba(124,92,255,.12); color:var(--text)}
-    .ctaRow{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px; padding:10px 12px; border-radius:12px;
-      border:1px solid rgba(34,52,95,.8);
-      text-decoration:none; font-weight:700;
-      background: rgba(255,255,255,.04);
-    }
-    .btn:hover{transform: translateY(-1px); transition:.15s ease; background: rgba(255,255,255,.06)}
-    .btn.primary{
-      border:1px solid rgba(124,92,255,.55);
-      background: linear-gradient(180deg, rgba(124,92,255,.25) 0%, rgba(124,92,255,.12) 100%);
-      box-shadow: 0 14px 30px rgba(124,92,255,.18);
-    }
-    .btn.green{
-      border:1px solid rgba(34,197,94,.45);
-      background: linear-gradient(180deg, rgba(34,197,94,.22) 0%, rgba(34,197,94,.10) 100%);
-      box-shadow: 0 14px 30px rgba(34,197,94,.16);
-    }
-    .hero{padding:46px 0 28px}
-    .grid{
-      display:grid; grid-template-columns: 1.15fr .85fr;
-      gap:18px; align-items:stretch;
-    }
-    @media (max-width: 920px){ .grid{grid-template-columns:1fr} .nav{border-radius: 18px} }
-    .card{
-      border:1px solid rgba(34,52,95,.7);
-      background: linear-gradient(180deg, rgba(15,27,50,.72) 0%, rgba(15,27,50,.44) 100%);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:18px;
-    }
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      font-family: var(--mono);
-      font-size:12px; color:#d6dcff;
-      padding:6px 10px; border-radius:999px;
-      background: rgba(124,92,255,.14);
-      border:1px solid rgba(124,92,255,.35);
-    }
-    h1{margin:14px 0 10px; font-size:44px; line-height:1.08}
-    @media (max-width: 520px){ h1{font-size:34px} }
-    .sub{margin:0; color:var(--muted); font-size:16px; max-width: 68ch}
-    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
-    .pill{
-      font-family:var(--mono);
-      font-size:12px; color:#cdd6ff;
-      padding:8px 10px; border-radius:999px;
-      border:1px solid rgba(34,52,95,.85);
-      background: rgba(255,255,255,.03);
-    }
-    .section{padding:18px 0}
-    .section h2{margin:0 0 10px; font-size:22px}
-    .muted{color:var(--muted)}
-    .cols3{display:grid; grid-template-columns: repeat(3,1fr); gap:14px}
-    @media (max-width: 920px){ .cols3{grid-template-columns:1fr} }
-    .item{
-      border:1px solid rgba(34,52,95,.7);
-      background: rgba(255,255,255,.03);
-      border-radius: 16px;
-      padding:14px;
-    }
-    .item h3{margin:0 0 6px; font-size:16px}
-    .item p{margin:0; color:var(--muted); font-size:14px}
-    .list{
-      display:grid; gap:10px; margin:12px 0 0; padding:0; list-style:none;
-    }
-    .list li{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:12px; border-radius:14px;
-      border:1px solid rgba(34,52,95,.7);
-      background: rgba(255,255,255,.03);
-    }
-    .dot{
-      width:10px; height:10px; margin-top:5px; border-radius:999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(124,92,255,.12);
-      flex: 0 0 auto;
-    }
-    .formula{
-      display:grid; gap:10px; margin-top:12px;
-      padding:14px; border-radius:16px;
-      border:1px dashed rgba(124,92,255,.55);
-      background: rgba(124,92,255,.08);
-      font-family: var(--mono);
-      font-size: 13px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px; border-radius:999px;
-      border:1px solid rgba(34,52,95,.8);
-      background: rgba(255,255,255,.03);
-      font-family: var(--mono);
-      font-size: 12px;
-      color:#dbe2ff;
-    }
-    .badge .lvl{color:#fff; background: rgba(245,158,11,.16); border:1px solid rgba(245,158,11,.35); padding:2px 8px; border-radius:999px}
-    .footer{padding:26px 0 40px; color:var(--muted); font-size:13px}
-    .hr{height:1px; background: rgba(34,52,95,.8); margin:18px 0}
-    .contactGrid{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
-    @media (max-width: 920px){ .contactGrid{grid-template-columns:1fr} }
-    .contactCard{display:flex; flex-direction:column; gap:10px}
-    .small{font-size:13px; color:var(--muted)}
-    .code{
-      font-family: var(--mono);
-      font-size: 12px;
-      padding:10px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(34,52,95,.8);
-      background: rgba(0,0,0,.18);
-      overflow:auto;
-      white-space:nowrap;
-    }
-  </style>
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--text);
+  background:
+    radial-gradient(900px 600px at 10% 10%, rgba(124,92,255,.18) 0%, transparent 60%),
+    radial-gradient(800px 600px at 90% 15%, rgba(34,197,94,.12) 0%, transparent 60%),
+    radial-gradient(900px 700px at 55% 95%, rgba(59,130,246,.14) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  line-height:1.55;
+}
+
+a{color:inherit}
+.wrap{max-width:var(--max); margin:0 auto; padding:22px}
+.topbar{
+  position:sticky; top:14px; z-index:20;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  background:rgba(8,12,22,.66);
+  backdrop-filter: blur(10px);
+  border-radius:999px;
+  box-shadow:var(--shadow2);
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  text-decoration:none; font-weight:900; letter-spacing:.2px;
+}
+.logo{
+  width:36px; height:36px; border-radius:14px;
+  background: radial-gradient(circle at 30% 30%, #a99bff 0%, #7c5cff 40%, #1c1550 100%);
+  box-shadow: 0 14px 36px rgba(124,92,255,.22);
+  position:relative;
+}
+.logo:after{
+  content:""; position:absolute; inset:10px;
+  border-radius:10px;
+  border:2px solid rgba(234,240,255,.55);
+  transform: rotate(12deg);
+}
+.navlinks{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.navlinks a{
+  text-decoration:none; font-weight:700;
+  color:var(--muted);
+  padding:8px 10px; border-radius:12px;
+}
+.navlinks a:hover{background:rgba(124,92,255,.12); color:var(--text)}
+.actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  font-weight:800;
+  cursor:pointer;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+}
+.btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.06); box-shadow:var(--shadow2)}
+.btn.primary{
+  border-color: rgba(124,92,255,.45);
+  background: linear-gradient(180deg, rgba(124,92,255,.22) 0%, rgba(124,92,255,.10) 100%);
+}
+.btn.green{
+  border-color: rgba(34,197,94,.40);
+  background: linear-gradient(180deg, rgba(34,197,94,.20) 0%, rgba(34,197,94,.09) 100%);
+}
+.lang{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+}
+.lang button{
+  border:0; background:transparent; color:var(--muted);
+  font-weight:900; padding:8px 10px; border-radius:999px;
+  cursor:pointer;
+}
+.lang button.active{
+  color:var(--text);
+  background:rgba(124,92,255,.18);
+  border:1px solid rgba(124,92,255,.28);
+}
+
+.hero{padding:48px 0 18px}
+.grid{
+  display:grid; grid-template-columns: 1.15fr .85fr; gap:16px;
+  align-items:stretch;
+}
+@media (max-width: 920px){ .grid{grid-template-columns:1fr} .topbar{border-radius:18px} }
+.card{
+  border:1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,.03) 100%);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:18px;
+}
+.kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family: var(--mono);
+  font-size:12px;
+  color: rgba(234,240,255,.82);
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(124,92,255,.32);
+  background: rgba(124,92,255,.12);
+}
+h1{margin:14px 0 10px; font-size:44px; line-height:1.08}
+@media (max-width:520px){ h1{font-size:34px} }
+.sub{margin:0; color:var(--muted); font-size:16px; max-width: 70ch}
+.pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+.pill{
+  font-family:var(--mono);
+  font-size:12px; color:rgba(234,240,255,.82);
+  padding:8px 10px; border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+}
+.section{padding:16px 0}
+.section h2{margin:0 0 10px; font-size:22px}
+.muted{color:var(--muted)}
+.cols3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+@media (max-width:920px){ .cols3{grid-template-columns:1fr} }
+.item{
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  border-radius: var(--radius2);
+  padding:14px;
+  box-shadow: var(--shadow2);
+}
+.item h3{margin:0 0 6px; font-size:16px}
+.item p{margin:0; color:var(--muted); font-size:14px}
+.list{display:grid; gap:10px; margin:12px 0 0; padding:0; list-style:none}
+.list li{
+  display:flex; gap:10px; align-items:flex-start;
+  padding:12px; border-radius:14px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+}
+.dot{
+  width:10px; height:10px; margin-top:5px; border-radius:999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+  flex:0 0 auto;
+}
+.hr{height:1px; background:rgba(148,163,184,.18); margin:16px 0}
+.footer{padding:24px 0 34px; color:var(--muted2); font-size:13px}
+.small{font-size:13px; color:var(--muted)}
+.center{text-align:center}
+.badgeRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(234,240,255,.85);
+}
+.badge .lvl{
+  color:#fff;
+  background: rgba(245,158,11,.16);
+  border:1px solid rgba(245,158,11,.35);
+  padding:2px 8px;
+  border-radius:999px;
+}
+.kv{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+@media (max-width:920px){ .kv{grid-template-columns:1fr} }
+.kv .item h3{font-size:15px}
+.kv .item p{font-size:13px}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header class="nav">
-      <a class="brand" href="#top" aria-label="AkylSöz">
-        <span class="logo" aria-hidden="true"></span>
-        <span>АкылСөз</span>
-      </a>
+<div class="wrap">
 
-      <nav class="navlinks" aria-label="Навигация">
-        <a href="#about">О проекте</a>
-        <a href="#problem">Проблема</a>
-        <a href="#solution">Решение</a>
-        <a href="#how">Как работаем</a>
-        <a href="#scale">Масштаб</a>
-        <a href="#contact">Связь</a>
-      </nav>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="AkylSöz">
+      <span class="logo" aria-hidden="true"></span>
+      <span>АкылСөз</span>
+    </a>
 
-      <div class="ctaRow">
-        <a class="btn primary" href="https://t.me/akylsoz" target="_blank" rel="noopener">Telegram-канал</a>
-        <a class="btn green" href="https://wa.me/996700486106" target="_blank" rel="noopener">WhatsApp</a>
+    <nav class="navlinks" aria-label="Navigation">
+      <a href="#about" data-i18n="nav_about">О проекте</a>
+      <a href="#problem" data-i18n="nav_problem">Проблема</a>
+      <a href="#solution" data-i18n="nav_solution">Решение</a>
+      <a href="#how" data-i18n="nav_how">Пайплайн</a>
+      <a href="#mediakit" data-i18n="nav_mediakit">Медиа-кит</a>
+      <a href="#scale" data-i18n="nav_scale">Масштаб</a>
+      <a href="#contact" data-i18n="nav_contact">Связь</a>
+    </nav>
+
+    <div class="actions">
+      <div class="lang" role="group" aria-label="Language switch">
+        <button id="btnRU" class="active" onclick="setLang('ru')">RU</button>
+        <button id="btnEN" onclick="setLang('en')">EN</button>
+        <button id="btnKG" onclick="setLang('kg')">KG</button>
       </div>
-    </header>
+      <button class="btn primary" onclick="goChannel()" data-i18n="btn_channel">Telegram-канал</button>
+      <button class="btn green" onclick="goWhatsApp()" data-i18n="btn_whatsapp">WhatsApp</button>
+    </div>
+  </header>
 
-    <main id="top">
-      <!-- HERO -->
-      <section class="hero">
-        <div class="grid">
-          <div class="card">
-            <span class="kicker">GovTech • Generative Media • Low-Resource Languages</span>
-            <h1>AI-академическая медиа-среда на кыргызском языке</h1>
-            <p class="sub">
-              <b>АкылСөз</b> создаёт качественный детский образовательный контент в стиле утренней передачи
-              (как “Dora”), чтобы сформировать академическую среду на кыргызском языке: <b>AI</b>, <b>IT</b> и
-              далее — новости науки. Для снижения барьера входа используем уровневое погружение <b>KG+RU</b> (A1→C1).
-            </p>
-
-            <div class="pillRow">
-              <span class="pill">Формат: Shorts + эпизоды</span>
-              <span class="pill">Языковой мост: A1–C1</span>
-              <span class="pill">Визуал: KlingAI</span>
-              <span class="pill">Озвучка: Kanitts</span>
-            </div>
-
-            <div class="pillRow" style="margin-top:14px">
-              <span class="badge"><span class="lvl">A1</span> 5–10% KG</span>
-              <span class="badge"><span class="lvl">A2</span> 15–25% KG</span>
-              <span class="badge"><span class="lvl">B1</span> 35–50% KG</span>
-              <span class="badge"><span class="lvl">B2</span> 65–80% KG</span>
-              <span class="badge"><span class="lvl">C1</span> 90–95% KG</span>
-            </div>
-
-            <div class="pillRow" style="margin-top:18px">
-              <a class="btn primary" href="#contact">Связаться</a>
-              <a class="btn" href="#how">Посмотреть пайплайн</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <h2 style="margin:0 0 8px">Что мы делаем сейчас</h2>
-            <p class="muted" style="margin:0 0 10px">
-              Стадия: <b>Pre-MVP → MVP пилот</b>. Наша задача — быстро подтвердить удержание и качество.
-            </p>
-            <ul class="list">
-              <li><span class="dot"></span><div><b>30-дневный MVP</b><br><span class="muted">1 ролик/день: A1→A2 → тест B1</span></div></li>
-              <li><span class="dot"></span><div><b>Флагманский формат</b><br><span class="muted">утренняя детская передача: AI/IT + наука</span></div></li>
-              <li><span class="dot"></span><div><b>Гранты/кредиты</b><br><span class="muted">облако, GPU, Voice AI, inference</span></div></li>
-            </ul>
-            <div class="hr"></div>
-            <p class="small">
-              Ищем партнёров для пилота, экспертов по языку и продакшн-поддержку.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="section">
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="grid">
         <div class="card">
-          <h2>О проекте</h2>
-          <p class="muted" style="margin:0">
-            <b>АкылСөз</b> — GovTech-ориентированный проект, который повышает качество кыргызоязычного контента
-            и расширяет тематику: от бытового контента → к академическому (AI, IT, наука).
-            Мы используем нейросети, чтобы делать современную картинку и чистую озвучку при минимальных затратах.
+          <span class="kicker" data-i18n="kicker">GovTech • Generative Media • Low-Resource Languages</span>
+
+          <h1 data-i18n="hero_title">AI-академическая медиа-среда на кыргызском языке</h1>
+          <p class="sub" data-i18n="hero_sub">
+            <b>АкылСөз</b> создаёт качественный детский образовательный контент в стиле утренней передачи
+            (как “Dora”), чтобы сформировать академическую среду на кыргызском языке: <b>AI</b>, <b>IT</b> и
+            далее — новости науки. Для снижения барьера входа используем уровневое погружение <b>KG+RU</b> (A1→C1).
           </p>
 
-          <div class="formula" aria-label="Формула продукта">
-            AkylSöz = (Generative Video) + (Neural Voice) + (A1–C1 Language Bridge) + (STEM Narratives)
+          <div class="pillRow" aria-label="Key tags">
+            <span class="pill" data-i18n="pill_format">Формат: Shorts + эпизоды</span>
+            <span class="pill" data-i18n="pill_bridge">Языковой мост: A1–C1</span>
+            <span class="pill" data-i18n="pill_visual">Визуал: KlingAI</span>
+            <span class="pill" data-i18n="pill_voice">Озвучка: Kanitts</span>
+          </div>
+
+          <div class="badgeRow" aria-label="Levels">
+            <span class="badge"><span class="lvl">A1</span> <span data-i18n="lvl_a1">5–10% KG</span></span>
+            <span class="badge"><span class="lvl">A2</span> <span data-i18n="lvl_a2">15–25% KG</span></span>
+            <span class="badge"><span class="lvl">B1</span> <span data-i18n="lvl_b1">35–50% KG</span></span>
+            <span class="badge"><span class="lvl">B2</span> <span data-i18n="lvl_b2">65–80% KG</span></span>
+            <span class="badge"><span class="lvl">C1</span> <span data-i18n="lvl_c1">90–95% KG</span></span>
+          </div>
+
+          <div class="pillRow" style="margin-top:18px">
+            <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="btn_contact">Связаться</button>
+            <button class="btn" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})" data-i18n="btn_view_pipeline">Посмотреть пайплайн</button>
           </div>
         </div>
-      </section>
 
-      <!-- PROBLEM -->
-      <section id="problem" class="section">
+        <div class="card">
+          <h2 data-i18n="now_title">Что мы делаем сейчас</h2>
+          <p class="muted" style="margin:0 0 10px" data-i18n="now_sub">
+            Стадия: <b>Pre-MVP → MVP пилот</b>. Наша задача — быстро подтвердить удержание и качество.
+          </p>
+          <ul class="list">
+            <li><span class="dot"></span><div><b data-i18n="now_1_b">30-дневный MVP</b><br><span class="muted" data-i18n="now_1_s">1 ролик/день: A1→A2 → тест B1</span></div></li>
+            <li><span class="dot"></span><div><b data-i18n="now_2_b">Флагманский формат</b><br><span class="muted" data-i18n="now_2_s">утренняя детская передача: AI/IT + наука</span></div></li>
+            <li><span class="dot"></span><div><b data-i18n="now_3_b">Гранты/кредиты</b><br><span class="muted" data-i18n="now_3_s">облако, GPU, Voice AI, inference</span></div></li>
+          </ul>
+          <div class="hr"></div>
+          <p class="muted" data-i18n="now_footer">Открыты к партнёрствам, пилотам и экспертной поддержке.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="card">
+        <h2 data-i18n="about_title">О проекте</h2>
+        <p class="muted" style="margin:0" data-i18n="about_text">
+          <b>АкылСөз</b> — GovTech-ориентированный проект, который повышает качество кыргызоязычного контента
+          и расширяет тематику: от бытового контента → к академическому (AI, IT, наука).
+          Мы используем нейросети, чтобы делать современную картинку и чистую озвучку при минимальных затратах.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem" class="section">
+      <div class="cols3">
+        <div class="item">
+          <h3 data-i18n="p1_t">1) Качество</h3>
+          <p data-i18n="p1_s">Низкое качество визуала и озвучки из-за бюджетов и нехватки продакшна.</p>
+        </div>
+        <div class="item">
+          <h3 data-i18n="p2_t">2) Тематика</h3>
+          <p data-i18n="p2_s">Преобладают бытовые темы и грамматика. Мало STEM/AI контента на кыргызском.</p>
+        </div>
+        <div class="item">
+          <h3 data-i18n="p3_t">3) Барьер языка</h3>
+          <p data-i18n="p3_s">Чистый кыргызский сложен для части аудитории. Нужен мягкий вход.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section id="solution" class="section">
+      <div class="card">
+        <h2 data-i18n="sol_title">Решение</h2>
+        <ul class="list">
+          <li><span class="dot"></span><div><b data-i18n="sol_1_b">AI-продакшн</b><br><span class="muted" data-i18n="sol_1_s">Generative video + neural voice → качество при низкой себестоимости.</span></div></li>
+          <li><span class="dot"></span><div><b data-i18n="sol_2_b">Уровневый языковой мост</b><br><span class="muted" data-i18n="sol_2_s">KG+RU (A1→C1): постепенное увеличение кыргызского до уровня почти носителя.</span></div></li>
+          <li><span class="dot"></span><div><b data-i18n="sol_3_b">Академическая среда</b><br><span class="muted" data-i18n="sol_3_s">Детский формат об AI/IT → далее расширение на новости науки.</span></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section id="how" class="section">
+      <div class="card">
+        <h2 data-i18n="how_title">Пайплайн</h2>
         <div class="cols3">
           <div class="item">
-            <h3>1) Качество</h3>
-            <p>Низкое качество визуала и озвучки в кыргызоязычной среде из-за бюджетов и нехватки продакшна.</p>
+            <h3 data-i18n="how_1_t">1) Сценарий + уровни</h3>
+            <p data-i18n="how_1_s">Тема → лексика → A1/A2/B1 ограничения → диалог → интерактив.</p>
           </div>
           <div class="item">
-            <h3>2) Тематика</h3>
-            <p>Преобладает “быт” и грамматика. Почти нет AI/IT и научных объяснений на кыргызском языке.</p>
+            <h3 data-i18n="how_2_t">2) Визуал</h3>
+            <p data-i18n="how_2_s">KlingAI: сцены, персонажи, стиль, правки и согласование.</p>
           </div>
           <div class="item">
-            <h3>3) Барьер языка</h3>
-            <p>Чистый кыргызский сложен для части аудитории. Нужен мягкий вход без стресса.</p>
+            <h3 data-i18n="how_3_t">3) Озвучка + монтаж</h3>
+            <p data-i18n="how_3_s">Kanitts: голоса → синхронизация → субтитры с подсветкой KG слов.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SOLUTION -->
-      <section id="solution" class="section">
-        <div class="card">
-          <h2>Решение</h2>
-          <ul class="list">
-            <li>
-              <span class="dot"></span>
-              <div>
-                <b>AI-продакшн</b><br>
-                <span class="muted">KlingAI для визуала + Kanitts для озвучки → качество при минимальных затратах.</span>
-              </div>
-            </li>
-            <li>
-              <span class="dot"></span>
-              <div>
-                <b>Уровневый языковой мост</b><br>
-                <span class="muted">KG+RU (A1→C1): постепенное увеличение кыргызского до почти уровня носителя.</span>
-              </div>
-            </li>
-            <li>
-              <span class="dot"></span>
-              <div>
-                <b>Академическая среда</b><br>
-                <span class="muted">Детский формат о AI/IT → дальше расширение на весь спектр науки.</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
+    <!-- MEDIA KIT -->
+    <section id="mediakit" class="section">
+      <div class="card">
+        <h2 data-i18n="mk_title">Press / Media Kit</h2>
+        <p class="muted" style="margin:0 0 12px" data-i18n="mk_sub">
+          Быстрые факты для госканала, партнёров и грантовых программ.
+        </p>
 
-      <!-- HOW -->
-      <section id="how" className="section" class="section">
-        <div class="card">
-          <h2>Как мы работаем (пайплайн)</h2>
-          <div class="contactGrid">
-            <div class="contactCard">
-              <div class="badge">1) Сценарий + уровни</div>
-              <div class="code">Тема → цели → лексика → A1/A2/B1-ограничения → реплики → интерактив</div>
-
-              <div class="badge">2) Генерация визуала</div>
-              <div class="code">KlingAI: сцены + стиль персонажей + правки</div>
-
-              <div class="badge">3) Озвучка</div>
-              <div class="code">Kanitts: голоса → чистка → тайминг под субтитры</div>
-            </div>
-
-            <div class="contactCard">
-              <div class="badge">4) Монтаж + субтитры</div>
-              <div class="code">Подсветка KG-слов • бейдж уровня • темп 30–45 сек / эпизоды 8–12 мин</div>
-
-              <div class="badge">5) Публикация + метрики</div>
-              <div class="code">Shorts/TikTok → retention → возвраты → комментарии → итерации формата</div>
-
-              <div class="badge">6) GovTech пилот</div>
-              <div class="code">Пилот 30–90 дней → отчёт → апробация → контракт/масштаб</div>
-            </div>
+        <div class="kv">
+          <div class="item">
+            <h3 data-i18n="mk_1_t">One-liner</h3>
+            <p data-i18n="mk_1_s">АкылСөз создаёт AI-детский научпоп на кыргызском с уровневым погружением A1→C1 и высоким качеством продакшна.</p>
           </div>
-        </div>
-      </section>
-
-      <!-- SCALE -->
-      <section id="scale" class="section">
-        <div class="card">
-          <h2>Масштабирование</h2>
-          <p class="muted" style="margin:0 0 12px">
-            После пилота в Кыргызстане модель переносится на другие языки и регионы: Узбекистан, Казахстан, Якутия,
-            Татарстан, Турция и др. Пайплайн остаётся, меняются лингвистические правила и локальный контекст.
-          </p>
-          <div class="cols3">
-            <div class="item">
-              <h3>Локализация</h3>
-              <p>Носители языка + методист → адаптация уровней и словаря.</p>
-            </div>
-            <div class="item">
-              <h3>Партнёрства</h3>
-              <p>Госканалы, EdTech, научпоп-сообщества, диаспора.</p>
-            </div>
-            <div class="item">
-              <h3>Экспорт формата</h3>
-              <p>Лицензирование + совместное производство сезонов.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="section">
-        <div class="card">
-          <h2>Связь</h2>
-          <p class="muted" style="margin:0 0 12px">
-            Напишите мне — отвечу по пилоту, партнёрству и грантам.
-          </p>
-
-          <div class="cols3">
-            <div class="item">
-              <h3>WhatsApp</h3>
-              <p><a class="btn green" href="https://wa.me/996700486106" target="_blank" rel="noopener">Открыть чат</a></p>
-              <p class="small">+996 700 486 106</p>
-            </div>
-
-            <div class="item">
-              <h3>Telegram (лично)</h3>
-              <p><a class="btn primary" href="https://t.me/abdykerim_adenov" target="_blank" rel="noopener">@abdykerim_adenov</a></p>
-              <p class="small">личные сообщения</p>
-            </div>
-
-            <div class="item">
-              <h3>Telegram-канал</h3>
-              <p><a class="btn" href="https://t.me/akylsoz" target="_blank" rel="noopener">t.me/akylsoz</a></p>
-              <p class="small">новости проекта</p>
-            </div>
+          <div class="item">
+            <h3 data-i18n="mk_2_t">Target audience</h3>
+            <p data-i18n="mk_2_s">Дети 6–12 (основная), подростки 12–16 (вторичная), родители и образовательная среда.</p>
           </div>
 
-          <div class="hr"></div>
-          <p class="small">
-            © <span id="y"></span> АкылСөз. Сделано для GitHub Pages.
-          </p>
-        </div>
-      </section>
+          <div class="item">
+            <h3 data-i18n="mk_3_t">Format</h3>
+            <p data-i18n="mk_3_s">Shorts/TikTok + эпизоды 8–12 минут. Персонажи + приключение + интерактив.</p>
+          </div>
+          <div class="item">
+            <h3 data-i18n="mk_4_t">Technology</h3>
+            <p data-i18n="mk_4_s">Generative video (KlingAI) + neural voice (Kanitts) + subtitle highlighting + A1–C1 language constraints.</p>
+          </div>
 
-      <footer class="footer">
-        <div class="wrap" style="padding:0">
-          <div class="hr"></div>
-          <div class="muted">
-            Подсказка для грантовых программ: на сайте есть публичное описание продукта и контакты — этого обычно достаточно
-            для первичной заявки на cloud credits / Voice AI grants.
+          <div class="item">
+            <h3 data-i18n="mk_5_t">GovTech value</h3>
+            <p data-i18n="mk_5_s">Популяризация государственного языка, рост STEM-лексики и академической среды на кыргызском.</p>
+          </div>
+          <div class="item">
+            <h3 data-i18n="mk_6_t">What we request</h3>
+            <p data-i18n="mk_6_s">Пилот 30–90 дней: эфир/публикация, методическая экспертиза и партнёрская поддержка.</p>
           </div>
         </div>
-      </footer>
-    </main>
-  </div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+        <div class="pillRow" style="margin-top:14px">
+          <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="mk_cta">Запросить пилот / сотрудничество</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCALE -->
+    <section id="scale" class="section">
+      <div class="card">
+        <h2 data-i18n="scale_title">Масштабирование</h2>
+        <p class="muted" style="margin:0 0 12px" data-i18n="scale_text">
+          После пилота в Кыргызстане модель переносится на другие языки и регионы: Узбекистан, Казахстан, Якутия,
+          Татарстан, Турция и др. Пайплайн остаётся, меняются лингвистические правила и локальный контекст.
+        </p>
+        <div class="cols3">
+          <div class="item">
+            <h3 data-i18n="scale_1_t">Локализация</h3>
+            <p data-i18n="scale_1_s">Носители языка + методист → адаптация уровней и словаря.</p>
+          </div>
+          <div class="item">
+            <h3 data-i18n="scale_2_t">Партнёрства</h3>
+            <p data-i18n="scale_2_s">Госканалы, EdTech, научпоп и диаспора.</p>
+          </div>
+          <div class="item">
+            <h3 data-i18n="scale_3_t">Экспорт формата</h3>
+            <p data-i18n="scale_3_s">Лицензирование + совместное производство сезонов.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="card center">
+        <h2 data-i18n="c_title">Связь</h2>
+        <p class="muted" style="margin:0 0 18px" data-i18n="c_text">
+          Для сотрудничества и пилотных проектов свяжитесь со мной напрямую. Контакты не отображаются — только кнопки.
+        </p>
+
+        <div class="cols3">
+          <div class="item center">
+            <h3 data-i18n="c_wa">WhatsApp</h3>
+            <button class="btn green" onclick="goWhatsApp()" data-i18n="c_btn_write">Написать</button>
+          </div>
+
+          <div class="item center">
+            <h3 data-i18n="c_tg">Telegram</h3>
+            <button class="btn primary" onclick="goTelegram()" data-i18n="c_btn_write">Написать</button>
+          </div>
+
+          <div class="item center">
+            <h3 data-i18n="c_ch">Telegram-канал</h3>
+            <button class="btn" onclick="goChannel()" data-i18n="c_btn_open">Перейти</button>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+        <div class="footer">© <span id="year"></span> AkylSöz</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // --- Year ---
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // --- Hidden contacts (not displayed on page; redirect only) ---
+  function goWhatsApp(){
+    const n = "996700486106";
+    window.location.href = "https://wa.me/" + n;
+  }
+  function goTelegram(){
+    const u = "abdykerim_adenov";
+    window.location.href = "https://t.me/" + u;
+  }
+  function goChannel(){
+    const c = "akylsoz";
+    window.location.href = "https://t.me/" + c;
+  }
+
+  // --- i18n dictionaries ---
+  const dict = {
+    ru: {
+      nav_about:"О проекте", nav_problem:"Проблема", nav_solution:"Решение", nav_how:"Пайплайн", nav_mediakit:"Медиа-кит", nav_scale:"Масштаб", nav_contact:"Связь",
+      btn_channel:"Telegram-канал", btn_whatsapp:"WhatsApp",
+      kicker:"GovTech • Generative Media • Low-Resource Languages",
+      hero_title:"AI-академическая медиа-среда на кыргызском языке",
+      hero_sub:"<b>АкылСөз</b> создаёт качественный детский образовательный контент в стиле утренней передачи (как “Dora”), чтобы сформировать академическую среду на кыргызском языке: <b>AI</b>, <b>IT</b> и далее — новости науки. Для снижения барьера входа используем уровневое погружение <b>KG+RU</b> (A1→C1).",
+      pill_format:"Формат: Shorts + эпизоды", pill_bridge:"Языковой мост: A1–C1", pill_visual:"Визуал: KlingAI", pill_voice:"Озвучка: Kanitts",
+      lvl_a1:"5–10% KG", lvl_a2:"15–25% KG", lvl_b1:"35–50% KG", lvl_b2:"65–80% KG", lvl_c1:"90–95% KG",
+      btn_contact:"Связаться", btn_view_pipeline:"Посмотреть пайплайн",
+      now_title:"Что мы делаем сейчас",
+      now_sub:"Стадия: <b>Pre-MVP → MVP пилот</b>. Наша задача — быстро подтвердить удержание и качество.",
+      now_1_b:"30-дневный MVP", now_1_s:"1 ролик/день: A1→A2 → тест B1",
+      now_2_b:"Флагманский формат", now_2_s:"утренняя детская передача: AI/IT + наука",
+      now_3_b:"Гранты/кредиты", now_3_s:"облако, GPU, Voice AI, inference",
+      now_footer:"Открыты к партнёрствам, пилотам и экспертной поддержке.",
+      about_title:"О проекте",
+      about_text:"<b>АкылСөз</b> — GovTech-ориентированный проект, который повышает качество кыргызоязычного контента и расширяет тематику: от бытового контента → к академическому (AI, IT, наука). Мы используем нейросети, чтобы делать современную картинку и чистую озвучку при минимальных затратах.",
+      p1_t:"1) Качество", p1_s:"Низкое качество визуала и озвучки из-за бюджетов и нехватки продакшна.",
+      p2_t:"2) Тематика", p2_s:"Преобладают бытовые темы и грамматика. Мало STEM/AI контента на кыргызском.",
+      p3_t:"3) Барьер языка", p3_s:"Чистый кыргызский сложен для части аудитории. Нужен мягкий вход.",
+      sol_title:"Решение",
+      sol_1_b:"AI-продакшн", sol_1_s:"Generative video + neural voice → качество при низкой себестоимости.",
+      sol_2_b:"Уровневый языковой мост", sol_2_s:"KG+RU (A1→C1): постепенное увеличение кыргызского до уровня почти носителя.",
+      sol_3_b:"Академическая среда", sol_3_s:"Детский формат об AI/IT → далее расширение на новости науки.",
+      how_title:"Пайплайн",
+      how_1_t:"1) Сценарий + уровни", how_1_s:"Тема → лексика → A1/A2/B1 ограничения → диалог → интерактив.",
+      how_2_t:"2) Визуал", how_2_s:"KlingAI: сцены, персонажи, стиль, правки и согласование.",
+      how_3_t:"3) Озвучка + монтаж", how_3_s:"Kanitts: голоса → синхронизация → субтитры с подсветкой KG слов.",
+      mk_title:"Press / Media Kit",
+      mk_sub:"Быстрые факты для госканала, партнёров и грантовых программ.",
+      mk_1_t:"One-liner", mk_1_s:"АкылСөз создаёт AI-детский научпоп на кыргызском с уровневым погружением A1→C1 и высоким качеством продакшна.",
+      mk_2_t:"Target audience", mk_2_s:"Дети 6–12 (основная), подростки 12–16 (вторичная), родители и образовательная среда.",
+      mk_3_t:"Format", mk_3_s:"Shorts/TikTok + эпизоды 8–12 минут. Персонажи + приключение + интерактив.",
+      mk_4_t:"Technology", mk_4_s:"Generative video (KlingAI) + neural voice (Kanitts) + subtitle highlighting + A1–C1 language constraints.",
+      mk_5_t:"GovTech value", mk_5_s:"Популяризация государственного языка, рост STEM-лексики и академической среды на кыргызском.",
+      mk_6_t:"What we request", mk_6_s:"Пилот 30–90 дней: эфир/публикация, методическая экспертиза и партнёрская поддержка.",
+      mk_cta:"Запросить пилот / сотрудничество",
+      scale_title:"Масштабирование",
+      scale_text:"После пилота в Кыргызстане модель переносится на другие языки и регионы: Узбекистан, Казахстан, Якутия, Татарстан, Турция и др. Пайплайн остаётся, меняются лингвистические правила и локальный контекст.",
+      scale_1_t:"Локализация", scale_1_s:"Носители языка + методист → адаптация уровней и словаря.",
+      scale_2_t:"Партнёрства", scale_2_s:"Госканалы, EdTech, научпоп и диаспора.",
+      scale_3_t:"Экспорт формата", scale_3_s:"Лицензирование + совместное производство сезонов.",
+      c_title:"Связь",
+      c_text:"Для сотрудничества и пилотных проектов свяжитесь со мной напрямую. Контакты не отображаются — только кнопки.",
+      c_wa:"WhatsApp", c_tg:"Telegram", c_ch:"Telegram-канал",
+      c_btn_write:"Написать", c_btn_open:"Перейти"
+    },
+
+    en: {
+      nav_about:"About", nav_problem:"Problem", nav_solution:"Solution", nav_how:"Pipeline", nav_mediakit:"Media kit", nav_scale:"Scaling", nav_contact:"Contact",
+      btn_channel:"Telegram channel", btn_whatsapp:"WhatsApp",
+      kicker:"GovTech • Generative Media • Low-Resource Languages",
+      hero_title:"AI-powered academic media in Kyrgyz",
+      hero_sub:"<b>AkylSöz</b> produces high-quality kids’ educational content in a morning-show format (Dora-like) to build an academic ecosystem in Kyrgyz: <b>AI</b>, <b>IT</b>, and later science news. To lower the entry barrier, we use an adaptive KG+RU immersion ladder (A1→C1).",
+      pill_format:"Format: Shorts + episodes", pill_bridge:"Language bridge: A1–C1", pill_visual:"Visuals: KlingAI", pill_voice:"Voice: Kanitts",
+      lvl_a1:"5–10% KG", lvl_a2:"15–25% KG", lvl_b1:"35–50% KG", lvl_b2:"65–80% KG", lvl_c1:"90–95% KG",
+      btn_contact:"Contact", btn_view_pipeline:"View pipeline",
+      now_title:"What we are doing now",
+      now_sub:"Stage: <b>Pre-MVP → MVP pilot</b>. We aim to validate retention and production quality fast.",
+      now_1_b:"30-day MVP", now_1_s:"1 short/day: A1→A2 → B1 test",
+      now_2_b:"Flagship format", now_2_s:"morning kids’ show: AI/IT + science",
+      now_3_b:"Grants/credits", now_3_s:"cloud, GPU, Voice AI, inference",
+      now_footer:"Open to partnerships, pilots, and expert support.",
+      about_title:"About",
+      about_text:"<b>AkylSöz</b> is a GovTech-oriented initiative that raises the quality of Kyrgyz-language media and expands topics from everyday talk to academic content (AI, IT, science). We use generative AI to achieve modern visuals and clean voice at low cost.",
+      p1_t:"1) Quality", p1_s:"Low production quality due to budget and tooling constraints.",
+      p2_t:"2) Topics", p2_s:"Content is mostly everyday talk and grammar; little STEM/AI in Kyrgyz.",
+      p3_t:"3) Language barrier", p3_s:"Pure Kyrgyz can be hard for part of the audience. We need a gentle entry.",
+      sol_title:"Solution",
+      sol_1_b:"AI production", sol_1_s:"Generative video + neural voice → high quality at low cost.",
+      sol_2_b:"Immersion ladder", sol_2_s:"KG+RU (A1→C1): gradually increase Kyrgyz to near-native level.",
+      sol_3_b:"Academic ecosystem", sol_3_s:"Kids’ AI/IT format → later expanding into science news.",
+      how_title:"Pipeline",
+      how_1_t:"1) Script + levels", how_1_s:"Topic → vocabulary → A1/A2/B1 constraints → dialogue → interactivity.",
+      how_2_t:"2) Visuals", how_2_s:"KlingAI: scenes, characters, style, iterations.",
+      how_3_t:"3) Voice + edit", how_3_s:"Kanitts: voices → sync → subtitles highlighting KG words.",
+      mk_title:"Press / Media Kit",
+      mk_sub:"Quick facts for public broadcasters, partners, and grant programs.",
+      mk_1_t:"One-liner", mk_1_s:"AkylSöz builds AI-powered kids’ science media in Kyrgyz with an A1→C1 immersion ladder and high-quality production.",
+      mk_2_t:"Target audience", mk_2_s:"Kids 6–12 (primary), teens 12–16 (secondary), parents and educators.",
+      mk_3_t:"Format", mk_3_s:"Shorts/TikTok + 8–12 minute episodes. Characters + adventure + interactivity.",
+      mk_4_t:"Technology", mk_4_s:"Generative video (KlingAI) + neural voice (Kanitts) + subtitle highlighting + A1–C1 constraints.",
+      mk_5_t:"GovTech value", mk_5_s:"Supports state language promotion and builds STEM vocabulary and academic discourse in Kyrgyz.",
+      mk_6_t:"What we request", mk_6_s:"A 30–90 day pilot: distribution/airtime, methodological review, and partnership support.",
+      mk_cta:"Request a pilot / partnership",
+      scale_title:"Scaling",
+      scale_text:"After the Kyrgyz pilot, we replicate to other languages/regions (Uzbekistan, Kazakhstan, Yakutia, Tatarstan, Türkiye, etc.). The pipeline stays; linguistic rules and local context change.",
+      scale_1_t:"Localization", scale_1_s:"Native speakers + methodologist → adapt levels and vocabulary.",
+      scale_2_t:"Partnerships", scale_2_s:"Public broadcasters, EdTech, popular science communities, diaspora.",
+      scale_3_t:"Format export", scale_3_s:"Licensing + co-producing seasons.",
+      c_title:"Contact",
+      c_text:"For partnerships and pilots, contact me directly. Contacts are not displayed — only buttons.",
+      c_wa:"WhatsApp", c_tg:"Telegram", c_ch:"Telegram channel",
+      c_btn_write:"Message", c_btn_open:"Open"
+    },
+
+    kg: {
+      nav_about:"Долбоор", nav_problem:"Көйгөй", nav_solution:"Чечим", nav_how:"Пайплайн", nav_mediakit:"Медиа-кит", nav_scale:"Кеңейтүү", nav_contact:"Байланыш",
+      btn_channel:"Telegram канал", btn_whatsapp:"WhatsApp",
+      kicker:"GovTech • Generative Media • Аз ресурстуу тилдер",
+      hero_title:"Кыргыз тилиндеги AI-академиялык медиа-среда",
+      hero_sub:"<b>АкылСөз</b> балдар үчүн эртең мененки берүүнүн форматына окшош (Dora сыяктуу) сапаттуу билим берүүчү контент түзөт. Максат — кыргыз тилинде <b>AI</b>, <b>IT</b> жана кийинчерээк илим жаңылыктары боюнча академиялык чөйрө түзүү. Кирүү тоскоолдугун азайтуу үчүн <b>KG+RU</b> деңгээлдүү ыкманы колдонобуз (A1→C1).",
+      pill_format:"Формат: Shorts + эпизоддор", pill_bridge:"Тил көпүрөсү: A1–C1", pill_visual:"Визуал: KlingAI", pill_voice:"Үн: Kanitts",
+      lvl_a1:"5–10% KG", lvl_a2:"15–25% KG", lvl_b1:"35–50% KG", lvl_b2:"65–80% KG", lvl_c1:"90–95% KG",
+      btn_contact:"Байланыш", btn_view_pipeline:"Пайплайнды көрүү",
+      now_title:"Азыр эмне кылабыз",
+      now_sub:"Стадия: <b>Pre-MVP → MVP пилот</b>. Максат — retention жана сапатты тез текшерүү.",
+      now_1_b:"30 күндүк MVP", now_1_s:"Күнүнө 1 кыска видео: A1→A2 → B1 тест",
+      now_2_b:"Флагман формат", now_2_s:"балдар үчүн эртең мененки берүү: AI/IT + илим",
+      now_3_b:"Грант/кредит", now_3_s:"cloud, GPU, Voice AI, inference",
+      now_footer:"Өнөктөштүккө, пилотко жана эксперттик колдоого ачыкбыз.",
+      about_title:"Долбоор жөнүндө",
+      about_text:"<b>АкылСөз</b> — кыргыз тилдүү контенттин сапатын көтөрүп, тематикасын кеңейткен GovTech-багыттагы демилге: тиричиликтен → академиялык контентке (AI, IT, илим). Нейросеталарды колдонуп, заманбап визуал жана таза үндү арзан өздүк нарк менен камсыздайбыз.",
+      p1_t:"1) Сапат", p1_s:"Бюджет жана куралдардын жетишсиздигинен визуал/үн сапаты төмөн.",
+      p2_t:"2) Тематика", p2_s:"Негизи тиричилик жана грамматика. Кыргыз тилинде STEM/AI аз.",
+      p3_t:"3) Тил тоскоолу", p3_s:"Таза кыргызча айрымдарга оор. Жумшак кирүү керек.",
+      sol_title:"Чечим",
+      sol_1_b:"AI-продакшн", sol_1_s:"Generative video + neural voice → сапат, төмөн өздүк нарк.",
+      sol_2_b:"Деңгээлдүү тил көпүрө", sol_2_s:"KG+RU (A1→C1): кыргызчаны акырын көбөйтүү — дээрлик носитель деңгээлине чейин.",
+      sol_3_b:"Академиялык чөйрө", sol_3_s:"Балдар форматы AI/IT жөнүндө → кийин илим жаңылыктарына кеңейтүү.",
+      how_title:"Пайплайн",
+      how_1_t:"1) Сценарий + деңгээл", how_1_s:"Тема → сөздөр → A1/A2/B1 чектөөлөр → диалог → интерактив.",
+      how_2_t:"2) Визуал", how_2_s:"KlingAI: сценалар, каармандар, стиль, итерациялар.",
+      how_3_t:"3) Үн + монтаж", how_3_s:"Kanitts: үндөр → синхрон → KG сөздөрдү белгилеген субтитрлер.",
+      mk_title:"Press / Media Kit",
+      mk_sub:"Мамлекеттик канал, өнөктөштөр жана грант программалары үчүн кыска фактылар.",
+      mk_1_t:"One-liner", mk_1_s:"АкылСөз — кыргыз тилинде AI-балдар илимий контентин A1→C1 ыкмасы менен жана жогорку сапатта чыгарат.",
+      mk_2_t:"Максаттуу аудитория", mk_2_s:"6–12 жаш (негизги), 12–16 (кошумча), ата-энелер жана билим берүү чөйрөсү.",
+      mk_3_t:"Формат", mk_3_s:"Shorts/TikTok + 8–12 мүнөт эпизоддор. Каарман + приключение + интерактив.",
+      mk_4_t:"Технология", mk_4_s:"Generative video (KlingAI) + neural voice (Kanitts) + субтитр белгилөө + A1–C1 чектөөлөр.",
+      mk_5_t:"GovTech пайдасы", mk_5_s:"Мамлекеттик тилди популяризациялоо жана кыргыз тилинде STEM-лексика/академиялык дискурс түзүү.",
+      mk_6_t:"Сурануу", mk_6_s:"30–90 күн пилот: таратуу/эфир, методикалык экспертиза жана өнөктөштүк колдоо.",
+      mk_cta:"Пилот / өнөктөштүк сурануу",
+      scale_title:"Кеңейтүү",
+      scale_text:"Кыргызстандагы пилоттон кийин модель башка тилдерге/региондорго көчүрүлөт: Өзбекстан, Казакстан, Якутия, Татарстан, Түркия ж.б. Пайплайн сакталат, тил эрежелери жана локал контекст өзгөрөт.",
+      scale_1_t:"Локалдаштыруу", scale_1_s:"Носитель + методист → деңгээл жана сөздүктү адаптациялоо.",
+      scale_2_t:"Өнөктөштүк", scale_2_s:"Госканалдар, EdTech, илимий коомчулуктар, диаспора.",
+      scale_3_t:"Форматты экспорт", scale_3_s:"Лицензиялоо + сезонду бирге чыгаруу.",
+      c_title:"Байланыш",
+      c_text:"Өнөктөштүк жана пилот үчүн түз байланыш. Контакттар көрүнбөйт — кнопкалар гана.",
+      c_wa:"WhatsApp", c_tg:"Telegram", c_ch:"Telegram канал",
+      c_btn_write:"Жазуу", c_btn_open:"Ачуу"
+    }
+  };
+
+  function setLang(lang){
+    document.getElementById("btnRU").classList.toggle("active", lang==="ru");
+    document.getElementById("btnEN").classList.toggle("active", lang==="en");
+    document.getElementById("btnKG").classList.toggle("active", lang==="kg");
+
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      const val = dict[lang][key];
+      if (val === undefined) return;
+      el.innerHTML = val;
+    });
+
+    document.documentElement.lang = (lang==="ru") ? "ru" : (lang==="en" ? "en" : "ky");
+    localStorage.setItem("akylsoz_lang", lang);
+  }
+
+  const saved = localStorage.getItem("akylsoz_lang");
+  if (saved === "en" || saved === "kg") setLang(saved);
+</script>
 </body>
 </html>
